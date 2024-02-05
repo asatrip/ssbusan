@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('../head') %>
+    <title><%= pageTitle %></title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<%= pageTitle %>" />
+    <meta name="og:description" content="<%= setting.siteDescription %>">
+    <meta property="og:siteName" content="<%= setting.siteName %>" />
+    <meta property="og:url" content="<%= setting.siteDomain %>/new">
+    
+    <%- include('../ogImage') %>
+    <meta property="type" content="website" />
+    <meta property="title" content=" <%= pageTitle %>" />
+    <meta name="description" content="<%= setting.siteDescription %>">
+    <meta property="siteName" content="<%= setting.siteName %>" />
+    <meta name="tag" content="<%= setting.siteKeywords %>" />
+    <meta property="description" content="<%= setting.siteDescription %>">
+    <meta property="url" content="<%= setting.siteDomain %>/new">
+    
+    <link rel="stylesheet" href="/stylesheets/board/list.css">
+    <link rel="stylesheet" href="/stylesheets/board/best.css">
+    
+
+    <meta name="naver-site-verification" content="982882124ebb174182330eadae77d4fedeb79402" />
+    <meta name="msvalidate.01" content="0E8C9F7BC58F94D10EFDBADC775D8E72" />
+  </head>
+  
+  <body>
+    <%- include('../commons') %>
+    <%- include('../header') %>
+    <%- include('../banner', { position: 'indexTop' }) %>
+    <main>
+  
+      <%- include('../aside', { mobile: false }) %>
+      <article id="list">
+
+        <div class="menu"><%= __('▫️ 부산 핫플레이스 피드 ▫️') %>
+
+          <!-- <%- include(`./bestheader`) %> -->
+      </div>
+        <!-- <%- include('../title', { title: lang.board_new }) %> -->
+        <%- include(`./type/boardBest`, { articles }) %>
+        <%- include('../pagination') %>
+        <%- include('./searchAndWrite') %>
+        <%- include('../banner', { position: 'articleBottom' }) %>
+      </article>
+      <%- include('../aside', { mobile: true }) %>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

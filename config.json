@@ -1,0 +1,72 @@
+{
+  "language": "ko",
+  "timezone": "Asia/Seoul",
+  "sessionSecret": "!@#$%node",
+  "sessionStore": "memory",
+  "cluster": false,
+  "storageType": "s3",
+  "storage": {
+    "production": {
+      "accessKeyId": "AKIAZSH4OTS5VAMHLH7H",
+      "secretAccessKey": "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",
+      "region": "ap-northeast-2",
+      "bucket": "static.ssbusan.com",
+      "host": "https://static.ssbusan.com",
+      "endpoint": "https://s3.ap-northeast-2.amazonaws.com"
+    },
+    "development": {
+      "accessKeyId": "AKIAZSH4OTS5VAMHLH7H",
+      "secretAccessKey": "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",
+      "region": "ap-northeast-2",
+      "bucket": "static.ssbusan.com",
+      "host": "https://static.ssbusan.com",
+      "endpoint": "https://s3.ap-northeast-2.amazonaws.com"
+    }
+  },
+  "sql": {
+    "production": {
+      "host": "database-4.c0cftfavdfpr.ap-northeast-2.rds.amazonaws.com",
+      "user": "admin",
+      "password": "No12h8wP43eVas3",
+      "port": "3306",
+      "database": "cms",
+      "connectionLimit": 10,
+      "waitForConnections": true,
+      "queueLimit": 0
+    },
+    "development": {
+      "host": "database-4.c0cftfavdfpr.ap-northeast-2.rds.amazonaws.com",
+      "user": "admin",
+      "password": "No12h8wP43eVas3",
+      "port": "3306",
+      "database": "cms",
+      "connectionLimit": 10,
+      "waitForConnections": true,
+      "queueLimit": 0
+    }
+  },
+  "redis": {
+    "production": {
+      "host": "localhost",
+      "port": "6379",
+      "password": "!@#$%node"
+    },
+    "development": {
+      "host": "localhost",
+      "port": "6379",
+      "password": "!@#$%node"
+    }
+  },
+  "firebase": {
+    "type": "",
+    "project_id": "",
+    "private_key_id": "",
+    "private_key": "",
+    "client_email": "",
+    "client_id": "",
+    "auth_uri": "",
+    "token_uri": "",
+    "auth_provider_x509_cert_url": "",
+    "client_x509_cert_url": ""
+  }
+}

@@ -1,0 +1,23 @@
+<section id="searchAndWrite">
+
+  <div class="search">
+      <form action="/<%= searchUrl %>">
+    <!-- <select name="searchType">
+          <option value="title"<% if (searchType === 'title') { %> selected<% } %>><%= __('board_title') %></option>
+          <option value="titleAndContent"<% if (searchType === 'titleAndContent') { %> selected<% } %>><%= __('board_titleAndContent') %></option>
+          <option value="nickName"<% if (searchType === 'nickName') { %> selected<% } %>><%= __('board_nickName') %></option>
+        </select>
+        <input type="text" name="keyword" value="<%= keyword %>" placeholder="<%= __('board_keyword') %>">
+        <button><%= __('board_search') %></button> -->
+    </form>
+  </div>
+  <div class="write">
+    <% if (typeof (board) !== 'undefined' && typeof (board) !== 'null' && board) { %>
+      <% if (writePermission && typeof (pullUp) !== 'undefined' && typeof (pullUp) !== 'null' && pullUp && !locals.user?.isAdmin) { %>
+        <a href="/<%= board.slug %>/pullUp"><%= __('board_pullUp') %></a>
+      <% } else if (writePermission) { %>
+        <a href="/<%= board.slug %>/new"><%= __('board_write') %></a>
+      <% } %>
+    <% } %>
+  </div>
+</section>

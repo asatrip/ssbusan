@@ -1,0 +1,15 @@
+<section id="header">
+  <a href="/mypage"<% if (typeof (position) !== 'undefined' && position === 'mypage') { %> class="selected"<% } %>><%= __('user_editProfile') %></a>
+  <a href="/mypage/password"<% if (typeof (position) !== 'undefined' && position === 'changePassword') { %> class="selected"<% } %>><%= __('user_changePassword') %></a>
+  <a href="/mypage/article"<% if (typeof (position) !== 'undefined' && position === 'article') { %> class="selected"<% } %>><%= __('user_myArticles') %></a>
+  <a href="/mypage/comment"<% if (typeof (position) !== 'undefined' && position === 'comment') { %> class="selected"<% } %>><%= __('user_myComments') %></a>
+  <a href="/mypage/point"<% if (typeof (position) !== 'undefined' && position === 'point') { %> class="selected"<% } %>><%= __('user_pointHistory') %></a>
+  <a href="/mypage/article/like"<% if (typeof (position) !== 'undefined' && position === 'articleLike') { %> class="selected"<% } %>><%= __('user_likeArticles') %></a>
+  <!-- <a href="/mypage/comment/like"<% if (typeof (position) !== 'undefined' && position === 'commentLike') { %> class="selected"<% } %>><%= __('user_likeComments') %></a> -->
+  <a href="/mypage/block"<% if (typeof (position) !== 'undefined' && position === 'block') { %> class="selected"<% } %>><%= __('user_blockUsers') %></a>
+  <a href="/alarm"<% if (typeof (position) !== 'undefined' && position === 'alarm') { %> class="selected"<% } %>><%= __('user_alarm') %></a>
+ 
+  <% if (setting.usePointWithdraw) { %>
+  <!-- <a href="/mypage/pointWithdraw"<% if (typeof (position) !== 'undefined' && position === 'pointWithdraw') { %> class="selected"<% } %>><%= __('user_pointWithdraw') %></a> -->
+  <% } %>
+</section>

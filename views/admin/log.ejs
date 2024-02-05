@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('./head') %>
+  </head>
+  <body>
+    <%- include('./header') %>
+    <main>
+      <section>
+        <%- include('./title', { title: `로그`, info:
+        'https://kbike.kr/support/manage/log', }) %>
+        <div class="tableWrap">
+          <table>
+            <thead>
+              <tr>
+                <th>날짜</th>
+                <th>타입</th>
+                <th>게시글</th>
+                <th>IP</th>
+                <th>이전 위치</th>
+                <th>유저 에이전트</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% logs.forEach(log => { %>
+              <tr>
+                <td><%= log.datetime %></td>
+                <td><%= log.typeKorean %></td>
+                <td class="article">
+                  <a href="/<%= log.boardSlug %>/<%= log.article_slug %>"  target="_blank"
+                    ><%= log.title %></a
+                  >
+                </td>
+                <td><%= log.ip %></td>
+                <td class="referer">
+                  <a href="<%= log.referer %>" target="_blank"
+                    ><%= log.referer %></a
+                  >
+                </td>
+                <td class="userAgent"><%= log.userAgent %></td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <div class="counter">
+          <div><%= Number(locals.count?.month).toLocaleString() %>.
+            <%= Number(locals.count?.week).toLocaleString() %>.
+<%= Number(locals.count?.yesterday).toLocaleString() %>.
+<%= Number(locals.count?.today).toLocaleString() %>
+</div></div>
+      </section>
+      <%- include('../pagination') %>
+    </main>
+  </body>
+</html>

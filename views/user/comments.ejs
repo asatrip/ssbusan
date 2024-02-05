@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('../head') %>
+    <meta
+      property="og:url"
+      content="<%= setting.siteDomain %>/mypage/article"
+    />
+    <link rel="canonical" href="<%= setting.siteDomain %>/mypage/article" />
+    <link rel="stylesheet" href="/stylesheets/user/user.css" />
+  </head>
+  <body>
+    <%- include('../commons') %> <%- include('../header') %>
+    <main>
+      <article id="comments">
+        <%- include('../aside', { mobile: false }) %> <%- include('../banner', {
+        position: 'indexTop' }) %> <%- include('./header') %>
+        <section id="item">
+          <%- include('../title', { title: `${targetUser.nickName}의 댓글` }) %>
+          <div class="items">
+            <% comments.forEach(comment => { %>
+            <div class="item">
+              <div class="main">
+                ▒
+                <a href="/<%= comment.boardSlug %>/<%= comment.articleSlug %>"
+                  ><%= comment.content %></a
+                >
+              </div>
+              <div class="info">
+                <div class="datetime"><%= comment.datetime %></div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        </section>
+        <%- include('../pagination') %>
+      </article>
+      <%- include('../aside', { mobile: true }) %>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

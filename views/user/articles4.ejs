@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('../head') %>
+    <meta name="naver-site-verification" content="a46f82ceb6505de5340ddfef9cd5e8865926c16d" />
+    <meta name="msvalidate.01" content="0E8C9F7BC58F94D10EFDBADC775D8E72" />
+    <meta name="description" content="<%= setting.siteDescription %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="<%= setting.siteDescription %>" />
+    <meta name="sitekeywords" content="<%= setting.siteKeywords %>" />
+    <meta property="pageTitle" content="<%= pageTitle %>">
+
+    <%- include('../ogImage') %>
+    <meta
+      property="og:url"
+      content="<%= setting.siteDomain %>/mypage/article"
+    />
+    <link rel="canonical" href="<%= setting.siteDomain %>/mypage/article" />
+    <link rel="stylesheet" href="/stylesheets/user/user.css" />
+
+  </head>
+  <body>
+    <%- include('../commons') %> <%- include('../header') %>
+    <main>
+      <%- include('../aside', { mobile: false }) %> 
+      <article id="article">
+        <%- include('../banner', { position: 'indexTop' }) %> 
+        <%- include('../banner', { position: 'articleTop' }) %> 
+
+      
+        <div class="menu">
+          <div class="titletwo">
+          <div class="title">
+            <a href="/user/<%= targetUser.nickName %>/articles4">
+        <%- include('../title', { title: `-  ${targetUser.nickName} 스토리  -` }) %></a></div>
+         <div class="two4">
+          <a href=" /user/<%= targetUser.nickName %>/articles"> 2단으로 보기</a></div></div>
+        <%- include(`../board/type/userboard4`, { articles }) %>
+        <%- include('../pagination') %>
+          </div>
+    
+      </article>
+      <%- include('../aside', { mobile: true }) %>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<div class="sections <%= sectionGroup.type %>">
+  <% if (sectionGroup.showTitleAndContent) { %>
+  <div class="sectionTitleContainer">
+    <h2><%= sectionGroup.title %></h2>
+    <div class="content"><%- sectionGroup.content %></div>
+  </div>
+  <% } %>
+  <% sectionGroup.sections.forEach(section => { %>
+  <div class="section <%= section.type %>">
+    <div class="articles <%= section.type %>">
+      <% section.articles.forEach(article => { %>
+      <div class="article">
+        <div class="content"><%- article.content %></div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+  <% }) %>
+</div>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="ko">
+<meta http-equiv="refresh" content=" 0; url=/dong">
+<meta name="naver-site-verification" content="982882124ebb174182330eadae77d4fedeb79402" />
+<meta name="description" content="부산의 색다른 재미 부산의 또다른 맛집과 카페 그리고 힐링!!">
+
+</html> -->

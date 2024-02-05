@@ -1,0 +1,93 @@
+<!-- <style>
+  <% if (locals.setting.theme === 'black') { %>
+  footer .buttons,
+  footer .license {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  footer .buttons a,
+  footer .license a {
+    color: #888;
+  }
+
+  footer .buttons a:hover,
+  footer .license a:hover,
+  footer .license a:active {
+    color: #aaa;
+  }
+
+  footer .introduce {
+    color: #888;
+  }
+
+  footer .copyright {
+    color: #888;
+  }
+
+  footer .counter {
+    color: #888;
+  }
+  <% } %>
+</style> -->
+<footer>
+  <div id="sub1">
+    <div class="f-menu">
+      <li>
+        <a href="javascript:history.back()" class="arrow">◀</a>
+        <!-- <li class="slash">|</li>
+        
+        <a href="javascript:history.forward()">⇨</a> -->
+      </li>
+      <li class="slash">|</li>
+      <li><a href="/">홈</a></li> </a></li>
+    <li class="slash">|</li>
+    <li><a href="/hot">뉴스</a></li>
+      <li class="slash">|</li>
+      <li><a href="/short">숏츠</a></li>
+      <li class="slash">|</li>
+      <li><a href="/market">문의</a></li>
+      <li class="slash">|</li>
+      <% if (locals.user) { %>
+      <li>
+        <a href="/mypage"
+          > 내정보⚙️
+          <!-- <%= locals.user.nickName %> -->
+        </a>
+      </li>
+      <% } else { %>
+      <li><a href="/mypage">⚙️</a></li>
+      <% } %>
+      <!-- <li class="slash">|</li>
+      <li><a href="javascript:location.reload()" class="arrow1">↻</a></li> -->
+    </div>
+  </div>
+
+  <% if (setting.footerDesign) { %>
+  <section id="customDesign" class="footer">
+    <%- setting.footerDesign %>
+  </section>
+  <% } %>
+  <img class="icon"
+  src="https://static.kbike.kr/assets/1705984631718-hxxwuoc72c5.png"
+  alt="K-바이크 www.kbike.kr">
+  <div class="introduce">    <h1>K-바이크</h1></div>
+  <div class="buttons">
+    <a href="/terms"><%= __('user_terms') %></a>
+    <div>|</div>
+    <a href="/privacy"><%= __('user_privacy') %></a>
+    <div>|</div>
+    <a href="/feed">RSS</a>
+    <div>|</div>
+    <a href="/holder">소유자정보</a>
+    
+  </div>
+  <div class="counter">
+    <% if (locals.setting.useVisitCount) { %>
+    <div> <%= Number(locals.count?.month).toLocaleString() %></div>
+    <div> <%= Number(locals.count?.today).toLocaleString() %></div>
+    <div>어제 <%= Number(locals.count?.yesterday).toLocaleString() %></div>
+  </div>
+  <% } %>
+
+
+</footer>

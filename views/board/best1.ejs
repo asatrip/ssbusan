@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('../head') %>
+    <title><%= setting.siteName %></title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<%= pageTitle %>" />
+    <meta name="og:description" content="<%= setting.siteDescription %>">
+    <meta property="og:siteName" content="<%= setting.siteName %>" />
+    <meta property="og:url" content="<%= setting.siteDomain %>/best" />
+    <%- include('../ogImage') %>
+    
+    <meta property="type" content="website" />
+    <meta property="title" content=" <%= pageTitle %>" />
+    <meta property="description" content="<%= setting.siteDescription %>">
+    <meta property="siteName" content="<%= setting.siteName %>" />
+    <meta property="url" content="<%= setting.siteDomain %>/best" />
+    <meta name="description" content="바이크카페 라이더카페 바이크정비 바이크샵 바이크용품 정보제공">
+
+    <% if (url) { %>
+    <meta name="sitekeywords" content="<%= setting.siteKeywords %>" />
+    <link rel="canonical" href="<%= setting.siteDomain %>/best" />
+    <% } else { %>
+    <meta property="og:url" content="<%= setting.siteDomain %>/<%= url %>" />
+    <link rel="canonical" href="<%= setting.siteDomain %>/<%= url %>" />
+
+    <% } %>
+    <meta name="naver-site-verification" content="982882124ebb174182330eadae77d4fedeb79402" />
+    <meta name="msvalidate.01" content="0E8C9F7BC58F94D10EFDBADC775D8E72" />
+    <link rel="stylesheet" href="/stylesheets/board/best.css" />
+  </head>
+
+
+  <body>
+    <%- include('../commons') %> <%- include('../header') %>
+
+
+    <main>
+      <%- include('../aside', { mobile: false }) %>
+      
+      <article id="best">
+        
+        <%- include('../banner', { position: 'indexTop' }) %> 
+        <!-- <%- include('../banner', { position: 'articleTop' }) %>  -->
+        
+        <!-- <%- include('../title', { title }) %> -->
+        <div class="menu">
+              <%- include(`./bestheader`) %>
+          </div>
+        <%- include('./type/boardBest', { articles }) %> 
+        <%- include('../pagination') %> <%- include('./searchAndWriteno') %> 
+        <%- include('../banner', { position: 'articleBottom' }) %>
+      </article>
+      <%- include('../aside', { mobile: true }) %>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

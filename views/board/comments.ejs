@@ -1,0 +1,29 @@
+<div class="commentsTitle"><%= __('board_comments') %></div>
+<div class="newComment" id="newComment">
+  <% if (!locals.user && board.commentPermission === 0) { %>
+  <div class="nonMember">
+    <input type="text" name="nickName" placeholder="<%= __('board_nickName') %>">
+    <input type="password" name="password" placeholder="<%= __('board_password') %>">
+  </div>
+  <% } %>
+  <div class="contentContainer">
+    <% if (locals.user && commentPermission || board.commentPermission === 0) { %>
+      <div class="newCommentContent"><textarea name="content" placeholder="<%= __('board_leaveAComment') %>"></textarea></div>
+      <div class="button"><button><%= __('board_submit') %></button></div>
+    <% } else if (locals.user && !commentPermission) { %>
+      <div class="newCommentContent"><textarea name="content" placeholder="<%= __('dontHavePermission') %>" disabled></textarea></div>
+      <div class="button"><button disabled><%= __('board_submit') %></button></div>
+    <% } else { %>
+      <div class="newCommentContent"><textarea name="content" placeholder="<%= __('board_needLogin') %>" disabled></textarea></div>
+      <div class="button"><button disabled><%= __('board_submit') %></button></div>
+    <% } %>
+  </div>
+</div>
+<div class="comments" id="comments">
+  <% comments.forEach(comment => { %>
+    <%- include('./comment', { comment }) %>
+    <% comment.replies.forEach(reply => { %>
+      <%- include('./comment', { comment: reply }) %>
+    <% }) %>
+  <% }) %>
+</div>

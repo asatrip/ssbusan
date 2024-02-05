@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('../../../head') %>
+    <meta property="og:url" content="<%= setting.siteDomain %>/<%= board.slug %>/edit">
+    <link rel="canonical" href="<%= setting.siteDomain %>/<%= board.slug %>/edit">
+    <link rel="stylesheet" href="/stylesheets/board/content.css">
+    <link rel="stylesheet" href="/stylesheets/editor/ckeditor5/editor.css">
+    <%- include('./editor') %>
+    <style>
+      .content a {
+        color: <%= setting.pointColor %>;
+      }
+    </style>
+    <script src="/javascripts/editor/ckeditor5/editor.js?v=0.06" defer></script>
+  </head>
+  <body>
+    <%- include('../../../header') %>
+    <main>
+      
+      <%- include('../../../aside', { mobile: false }) %>
+      <article>
+        <%- include('../../../banner', { position: 'indexTop' }) %>
+        <%- include('../../../title', { title: board.title }) %>
+        <form action="/<%= board.slug %>/<%= article.slug %>/update" method="POST" enctype="multipart/form-data" onsubmit="onSubmit(this); return false;">
+          <input type="hidden" name="articleId" value="<%= article.id %>">
+          <% if (board.categories?.length || locals.user?.isAdmin) { %>
+          <div class="subContainer">
+            <% if (board.categories?.length) { %>
+            <div class="categoryContainer">
+              <select name="category" id="category">
+                <% board.categories.forEach(category => { %>
+                <option value="<%= category.id %>"<% if (category.id === article.article_category_ID) { %> selected<% } %>><%= category.title %></option>
+                <% }) %>
+              </select>
+            </div>
+            <% } else { %>
+            <input type="hidden" id="category" value="0">
+            <% } %>
+            <div class="checkBox">
+              <% if (locals.user?.isAdmin) { %>
+
+              <div class="notice">
+                <label for="notice"><%= __('board_notice') %></label>
+                <input type="checkbox" name="notice" id="notice" value="1"<% if (article.notice) { %> checked<% } %>>
+              </div>
+              <% } %>
+            </div>
+            <div class="mini-button">
+              <button class="button-1"><%= __(`𝐄𝐝𝐢𝐭`) %></button></div>
+          </div>
+          <% } %>
+          <% if (!article.article_user_ID) { %>
+          <div class="nonMember">
+            <input type="text" name="nickName" value="<%= article.nickName %>" placeholder="<%= __('board_nickName') %>">
+            <input type="password" name="password" placeholder="<%= __('board_password') %>">
+          </div>
+          <% } %>
+          <!-- <div class="title">
+          <textarea name="title" value="<%= article.title %>" placeholder="<%= __('board_title') %>"></textarea></div> -->
+          <div class="title"><input type="text" name="title" id="title" value="<%= article.title %>" placeholder="<%= __('board_title') %>"></div>
+      
+      
+          <% if (board.useCustomField01 || board.useCustomField02 || board.useCustomField03 || board.useCustomField04 || board.useCustomField05 || board.useCustomField06 || board.useCustomField07 || board.useCustomField08 || board.useCustomField09 || board.useCustomField10) { %>
+          <div class="customFieldContainer">
+            <% if (board.useCustomField01) { %><div class="field1">
+              <div class="f1-2"><%= board.customFieldTitle01 %></div> 
+              <div class="f1"><input type="text" name="customField01" value="<%= board.customField01 %>" placeholder="<%= board.customFieldTitle01 %>" onfocus="this.placeholder='<%= board.customFieldTitle01 %>'"></div>
+          </div>
+          <% } %>
+
+
+
+
+            <% if (board.useCustomField02) { %><div class="field2"> 
+            <div class="f2"><input type="text" name="customField02" value="<%= board.customField02 %>" placeholder="<%= board.customFieldTitle02 %>" onfocus="this.placeholder='<%= board.customFieldTitle02 %>'"></div>
+            <div class="f2-2"><input type="text" name="customField02" value="<%= article.customField02 %>" placeholder="<%= article.customField02 %>" onfocus="this.placeholder=''"></div>
+            </div>
+            <% } %>
+        
+            <% if (board.useCustomField03) { %><div class="field3"> 
+              <div class="f3"><input type="text" name="customField03" value="<%= board.customField03 %>" placeholder="<%= board.customFieldTitle03 %>" onfocus="this.placeholder='<%= board.customFieldTitle03 %>'"></div>
+              <div class="f3-2"><input type="text" name="customField03" value="<%= article.customField03 %>" placeholder="<%= article.customField03 %>" onfocus="this.placeholder=''"></div>
+              </div>
+              <% } %>
+    
+              <% if (board.useCustomField04) { %><div class="field4"> 
+                <div class="f4"><input type="text" name="customField04" value="<%= board.customField04 %>" placeholder="<%= board.customFieldTitle04 %>" onfocus="this.placeholder='<%= board.customFieldTitle04 %>'"></div>
+                <div class="f4-2"><input type="text" name="customField04" value="<%= article.customField04 %>" placeholder="<%= article.customField04 %>" onfocus="this.placeholder=''"></div>
+                </div>
+                <% } %>
+      
+                <% if (board.useCustomField05) { %><div class="field5"> 
+                  <div class="f5"><input type="text" name="customField05" value="<%= board.customField05 %>" placeholder="<%= board.customFieldTitle05 %>" onfocus="this.placeholder='<%= board.customFieldTitle05 %>'"></div>
+                  <div class="f5-2"><input type="text" name="customField05" value="<%= article.customField05 %>" placeholder="<%= article.customField05 %>" onfocus="this.placeholder=''"></div>
+                  </div>
+                  <% } %>
+          
+                  <!-- <% if (board.useCustomField05) { %><div class="field6"> 
+                    <div class="f6"><input type="text" name="customField06" value="<%= board.customField06 %>" placeholder="<%= board.customFieldTitle06 %>" onfocus="this.placeholder='<%= board.customFieldTitle06 %>'"></div>
+                    <div class="f6-2"><input type="text" name="customField06" value="<%= article.customField06 %>" placeholder="<%= article.customField06 %>" onfocus="this.placeholder=''"></div>
+                    </div>
+                    <% } %> -->
+
+            <% if (board.useCustomField07) { %><div><input type="text" name="customField07" value="<%= board.customField07 %>" placeholder="<%= board.customFieldTitle07 %>" onfocus="this.placeholder=''"></div><% } %>
+            <% if (board.useCustomField08) { %><div><input type="text" name="customField08" value="<%= board.customField08 %>" placeholder="<%= board.customFieldTitle08 %>" onfocus="this.placeholder=''"></div><% } %>
+            <% if (board.useCustomField09) { %><div><input type="text" name="customField09" value="<%= board.customField09 %>" placeholder="<%= board.customFieldTitle09 %>" onfocus="this.placeholder=''"></div><% } %>
+            <% if (board.useCustomField10) { %><div><input type="text" name="customField10" value="<%= board.customField10 %>" placeholder="<%= board.customFieldTitle10 %>"  onfocus="this.placeholder=''"></div><% } %>
+          </div>
+          <% } %>
+          <div class="content">
+            <div class="textareaContainer">
+              <textarea name="content" id="editor"><%= article.content %></textarea>
+            </div>
+          </div>
+          <% if (board.useHtml) { %>
+          <div class="html">
+            <textarea name="html" placeholder="HTML"><%= article.html %></textarea>
+          </div>
+          <% } %>
+          <div class="tags">
+            <% let tagString = '' %>
+            <% article.tags?.forEach(tag => tagString += `${tag.key},`) %>
+            <input type="text" name="tags" value="<%= tagString %>" placeholder="<%= __('board_tag') %>">
+          </div>
+          <% if (board.useLinks) { %>
+          <div class="links">
+            <input type="text" name="links" value="<%= article.links %>" placeholder="<%= __('board_link') %>">
+          </div>
+          <% } %>
+          <% if (board.useFiles) { %>
+          <div class="files">
+            <input type="file" name="files" placeholder="<%= __('board_file') %>" multiple>
+          </div>
+          <% } %>
+          <div class="button"><button><%= __('board_edit') %></button></div>
+        </form>
+      </article>
+      <%- include('../../../aside', { mobile: true }) %>
+    </main>
+    <%- include('../../../footer') %>
+  </body>
+</html>

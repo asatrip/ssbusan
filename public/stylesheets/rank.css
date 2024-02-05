@@ -1,0 +1,73 @@
+article .buttons {
+  display: flex;
+  width: 80%;
+  height: 35px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  justify-content: end;
+  align-items: center;
+}
+
+article h1{
+  font-size: 0.9em;
+  color: #ececec;
+}
+
+article .buttons a {
+  font-size: 0.8em;
+  width: 100%;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  background-color: #f3f2f2;
+  cursor: pointer;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 3px;
+}
+
+article .buttons a:hover,
+article .buttons a:active {
+  background-color: #eaecf0;
+}
+
+article .buttons a.selected {
+  color: #000;
+  background-color: #fff;
+}
+
+article .pointRanks {
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 96%;
+}
+
+article .pointRank {
+  font-size: 0.85em;
+  display: flex;
+  background-color: #fff;
+  padding: 7px 0;
+  border-radius: 8px;
+  border: 1px dotted rgb(75, 75, 75);
+}
+
+article .pointRank > div {
+  flex: 1;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 15px;
+}
+
+article .pointRank .nickName {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 4px;
+}

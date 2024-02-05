@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('../head') %>
+    <title><%= setting.siteName %></title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<%= setting.siteName %> | <%= pageTitle %>" />
+    <meta name="description" content="<%= setting.siteDescription %>">
+    <meta property="og:siteName" content="<%= setting.siteName %>" />
+    <meta property="og:url" content="<%= setting.siteDomain %>/<%= board.slug %>" />
+    
+    <%- include('../ogImage') %>
+    <meta property="type" content="website" />
+    <meta property="title" content="<%= setting.siteName %> | <%= pageTitle %>" />
+    <meta name="og:description" content="<%= setting.siteDescription %>">
+    <meta property="og:description" content="<%= setting.siteDescription %>">
+    <meta name="sitekeywords" content="<%= setting.siteKeywords %>" />
+    <meta property="url" content="<%= setting.siteDomain %>/<%= board.slug %>"
+    />
+    
+    <meta name="naver-site-verification" content="982882124ebb174182330eadae77d4fedeb79402" />
+    <meta name="msvalidate.01" content="0E8C9F7BC58F94D10EFDBADC775D8E72" />
+    
+    <link rel="canonical" href="<%= setting.siteDomain %>/<%= board.slug %>>" />
+    <link rel="stylesheet" href="/stylesheets/board/list.css?v=0.02" />
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <%- include('../aside', { mobile: false }) %>
+      <article id="list">
+
+        <%- include('../banner', { position: 'indexTop' }) %>
+
+        <!-- <div class="mainmenu">
+        <%- include(`../menu`) %></div> -->
+        <!-- <%- include('../banner', { position: 'articleTop' }) %>  -->
+        
+        <div class="titleWrite">
+          <div class="title-11">
+      <%- include('../title', { title: board.title }) %>
+          </div>
+          <div class="writeBtn">
+            <a href="/<%= board.slug %>/new"><%= __(`𝐰𝐫𝐢𝐭𝐞`) %></a>
+          </div>
+        </div>
+  
+
+        <% if (board.content || board.image) { %>
+        <div class="introduce">
+          <% if (board.content) { %>
+          <div class="content">
+            <%- board.content.replaceAll('\r\n', '<br />') %>
+          </div>
+          <% } %> <% if (board.image) { %>
+          <div class="image">
+            <img
+              src="<%= storage %>/board/<%= board.image %>"
+              alt="<%= article.title %>"
+            />
+          </div>
+          <% } %>
+        </div>
+        <% } %> <% if (board.categories?.length) { %>
+          <div class="categories">
+            <% board.categories.forEach(category => { %>
+          <!-- <div class="category">
+            <a href="?category="><%= __('board_all') %></a>
+          </div> -->
+          
+          <div class="category">
+            <a href="?category=<%= category.id %>"><%= category.title %></a>
+          </div>
+          <% }) %>
+        </div>
+        <% } %> <% if (notices?.length) { %> <%- include(`./type/board`, {
+        articles: notices }) %> <% } %> <%- include(`./type/${board.type}`, {
+        articles: articles }) %> <%- include('../pagination') %> <%-
+        include('./searchAndWrite') %> <%- include('../banner', { position:
+        'articleBottom' }) %>
+      </article>
+      <%- include('../aside', { mobile: true }) %>
+    </main>
+    <%- include('../footer') %>
+
+    
+  </body>
+</html>

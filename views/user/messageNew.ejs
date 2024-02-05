@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('../head') %>
+    <meta property="og:url" content="<%= setting.siteDomain %>/message/send" />
+    <link rel="canonical" href="<%= setting.siteDomain %>/message/send" />
+    <link rel="stylesheet" href="/stylesheets/user/message.css" />
+  </head>
+  <body>
+    <%- include('../commons') %> <%- include('../header') %>
+    <main>
+      <%- include('../aside', { mobile: false }) %>
+      <article id="message">
+        <%- include('../banner', { position: 'indexTop' }) %>
+        <%- include('../banner', { position: 'articleTop' }) %> 
+        <%-
+        include('../title', { title: lang.user_messageSend }) %>
+        <div class="buttons">
+          <a href="/message"><%= __('user_messageList') %></a>
+          <% if (setting.useMessage) { %>
+          <a href="/message/send"><%= __('user_messageSend') %></a>
+          <% } %>
+        </div>
+        <form action="/message/send" method="POST">
+          <input
+            type="text"
+            name="nickName"
+            value="<%= nickName %>"
+            placeholder="<%= __('user_nickName') %>"
+          />
+          <div class="content">
+            <textarea
+              name="content"
+              placeholder="<%= __('user_messageContent') %>"
+            ></textarea>
+          </div>
+          <button class="submit"><%= __('send') %></button>
+        </form>
+        <div class="manager">- 관리자에게 쪽지는 닉네임란에 관리자라 입력하시고 내용보내기 -</div>
+      </article>
+      <%- include('../aside', { mobile: true }) %>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>
